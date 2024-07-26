@@ -26,16 +26,16 @@ async function getProduct() {
                 <img src="${data.imageUrl}"
                     alt="ciao" class="w-100" id="image">
             </div>
-            <div class="col-12">
-                <div class="row container align-items-center">
-                    <div class="col-6">
-                        <p id="description" class="text-center text-success fw-bolder">${data.description}</p>
+            <div class="col-12 p-5 pt-0">
+                <div class="row align-items-center container d-flex justify-content-between">
+                    <div class="col-6 ">
+                        <p id="description" class="text-success fw-bolder fs-2">${data.description}</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <p class=" text-warning fs-2 fw-bold" id="brand">${data.brand}</p>
                     </div>
-                    <div class="col-3">
-                        <p class="text-center text-danger fw-bolder" id="price">${data.price}€</p>
+                    <div class="col-2">
+                        <p class="text-danger fs-2 fw-bolder" id="price">${data.price}€</p>
                     </div>
                 </div>
             </div>`;

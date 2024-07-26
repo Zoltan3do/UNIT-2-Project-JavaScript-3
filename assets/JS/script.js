@@ -26,7 +26,9 @@ async function getProducts() {
             const card = document.createElement("div");
             card.className = "col";
             card.innerHTML = ` <div class="card mb-4 shadow-sm">
-            <img src="${element.imageUrl}" class="bd-placeholder-img card-img-top" data-id="${element._id}"/>
+            <div class="text-center p-1" id="contImg">
+            <img src="${element.imageUrl}" class="bd-placeholder-img card-img-top h-100 object-fit-cover " data-id="${element._id}"/>
+            </div>
             <div class="card-body">
               <h5 class="card-title">${element.name}</h5>
               <p class="card-text">${element.price}€</p>
