@@ -5,7 +5,7 @@ window.onload = function () {
     getProducts();
 }
 
-async function getProducts(id) {
+async function getProducts() {
     try {
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/`, {
             headers: { 'Authorization': "Bearer " + apiKey }
@@ -23,7 +23,7 @@ async function getProducts(id) {
             const card = document.createElement("div");
             card.className = "col";
             card.innerHTML = ` <div class="card mb-4 shadow-sm">
-            <img src="${element.imageUrl}" class="bd-placeholder-img card-img-top"/>
+            <img src="${element.imageUrl}" class="bd-placeholder-img card-img-top" data-id="${element._id}"/>
             <div class="card-body">
               <h5 class="card-title">${element.name}</h5>
               <p class="card-text">${element.price}€</p>
@@ -40,6 +40,7 @@ async function getProducts(id) {
 
         const deletes = document.querySelectorAll(".btn-group button:last-of-type");
         const edites = document.querySelectorAll(".btn-group button:first-of-type");
+        const images = document.querySelectorAll(".card img");
 
         deletes.forEach(d => {
             d.addEventListener("click", async function () {
@@ -49,11 +50,18 @@ async function getProducts(id) {
             });
         })
 
-        edites.forEach(d => {
-            d.addEventListener("click", async function () {
-                const id = d.dataset.id;
+        edites.forEach(e => {
+            e.addEventListener("click", async function () {
+                const id = e.dataset.id;
                 location.assign(`./backoffice.html?cardId=${id}`);
             });
+        })
+
+        images.forEach(i => {
+            i.addEventListener("click",async function(){
+                const id = i.dataset.id;
+                location.assign(`./details.html?imgId=${id}`)
+            })
         })
 
     } catch (err) {

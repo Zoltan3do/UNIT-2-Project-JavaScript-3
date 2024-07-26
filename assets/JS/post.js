@@ -1,7 +1,7 @@
 const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmEzNGViNmYyNjBjYzAwMTVjYzBkY2QiLCJpYXQiOjE3MjE5Nzg1NTAsImV4cCI6MTcyMzE4ODE1MH0.qfVpHFiuqK7P2KKIG58U9joWwpcziiSKkv031qTQpEI';
 const form = document.getElementsByTagName("form")[0];
 const barParameters = new URLSearchParams(location.search).get('cardId');
-const meth = barParameters ? "PUT" : "GET";
+const meth = barParameters ? "PUT" : "POST";
 
 
 async function postPutProduct() {
