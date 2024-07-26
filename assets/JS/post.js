@@ -1,10 +1,15 @@
 const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmEzNGViNmYyNjBjYzAwMTVjYzBkY2QiLCJpYXQiOjE3MjE5Nzg1NTAsImV4cCI6MTcyMzE4ODE1MH0.qfVpHFiuqK7P2KKIG58U9joWwpcziiSKkv031qTQpEI';
 const form = document.getElementsByTagName("form")[0];
+const barParameters = new URLSearchParams(location.search).get('cardId');
+const meth = barParameters ? "PUT" : "GET";
 
 
-async function postProduct() {
+async function postPutProduct() {
+    const id = (meth === "PUT") ? barParameters : "";
+    const uri = id
+        ? `https://striveschool-api.herokuapp.com/api/product/${id}`
+        : `https://striveschool-api.herokuapp.com/api/product`;
     try {
-        console.log("ciao")
         const name = document.getElementById("nameIn").value;
         const desc = document.getElementById("descIn").value;
         const brand = document.getElementById("brandIn").value;
@@ -18,27 +23,30 @@ async function postProduct() {
             "price": price
         }
 
-        const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/`, {
-            method: "POST",
+        const response = await fetch(uri, {
+            method: meth,
             body: JSON.stringify(newArtWork),
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': "Bearer " + apiKey
             },
         })
+        console.log(response);
 
         if (response.ok) {
             console.log("L'aggiunta è andata a buon fine!")
         } else {
-            throw new Error("Risposta non andata a buon fine!")
+            const errorDetails = await response.text();
+            throw new Error(`Risposta non andata a buon fine! Dettagli: ${errorDetails}`)
         }
 
     } catch (err) {
         console.log(err)
     }
 }
-form.addEventListener("submit", function(e){
+
+form.addEventListener("submit", function (e) {
     e.preventDefault();
-    postProduct();
+    postPutProduct();
     form.reset();
 });

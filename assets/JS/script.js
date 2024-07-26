@@ -1,12 +1,11 @@
 const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmEzNGViNmYyNjBjYzAwMTVjYzBkY2QiLCJpYXQiOjE3MjE5Nzg1NTAsImV4cCI6MTcyMzE4ODE1MH0.qfVpHFiuqK7P2KKIG58U9joWwpcziiSKkv031qTQpEI';
 const prodContainer = document.getElementById('products-container');
 
-
 window.onload = function () {
     getProducts();
 }
 
-async function getProducts() {
+async function getProducts(id) {
     try {
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/`, {
             headers: { 'Authorization': "Bearer " + apiKey }
@@ -38,7 +37,9 @@ async function getProducts() {
           </div>`;
             prodContainer.appendChild(card);
         });
+
         const deletes = document.querySelectorAll(".btn-group button:last-of-type");
+        const edites = document.querySelectorAll(".btn-group button:first-of-type");
 
         deletes.forEach(d => {
             d.addEventListener("click", async function () {
@@ -48,7 +49,12 @@ async function getProducts() {
             });
         })
 
-        console.log(deletes);
+        edites.forEach(d => {
+            d.addEventListener("click", async function () {
+                const id = d.dataset.id;
+                location.assign(`./backoffice.html?cardId=${id}`);
+            });
+        })
 
     } catch (err) {
         console.log(err)
@@ -73,5 +79,3 @@ async function deleteProduct(id) {
         console.log(err)
     }
 }
-
-
