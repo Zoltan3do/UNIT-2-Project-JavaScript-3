@@ -29,13 +29,13 @@ async function getProduct() {
             <div class="col-12 p-5 pt-0">
                 <div class="row align-items-center container d-flex justify-content-between">
                     <div class="col-6 ">
-                        <p id="description" class="text-success fw-bolder fs-2">${data.description}</p>
+                        <p id="description" class="text-success fw-bolder fs-3">${data.description}</p>
                     </div>
                     <div class="col-2">
-                        <p class=" text-warning fs-2 fw-bold" id="brand">${data.brand}</p>
+                        <p class=" text-warning fs-3 fw-bold" id="brand">${data.brand}</p>
                     </div>
                     <div class="col-2">
-                        <p class="text-danger fs-2 fw-bolder" id="price">${data.price}€</p>
+                        <p class="text-danger fs-3 fw-bolder" id="price">${data.price}€</p>
                     </div>
                 </div>
             </div>`;
