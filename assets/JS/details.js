@@ -40,7 +40,6 @@ async function getProduct() {
                 </div>
             </div>`;
 
-
     } catch (err) {
         console.log(err)
     }

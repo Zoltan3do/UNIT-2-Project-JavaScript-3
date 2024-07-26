@@ -1,5 +1,6 @@
 const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmEzNGViNmYyNjBjYzAwMTVjYzBkY2QiLCJpYXQiOjE3MjE5Nzg1NTAsImV4cCI6MTcyMzE4ODE1MH0.qfVpHFiuqK7P2KKIG58U9joWwpcziiSKkv031qTQpEI';
 const prodContainer = document.getElementById('products-container');
+const modalButton = document.querySelector("#staticBackdrop .modal-footer button:last-of-type");
 
 window.onload = function () {
     getProducts();
@@ -30,7 +31,7 @@ async function getProducts() {
               <div class="d-flex justify-content-between align-items-center"> 
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary view-btn" data-id="${element._id}" data-src="${element.imageUrl}"  data-alt="${element.name}">Edit</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary hide-btn" data-id="${element._id}">Delete</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary hide-btn" data-id="${element._id}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                 </div>
               </div>
             </div>
@@ -43,10 +44,12 @@ async function getProducts() {
         const images = document.querySelectorAll(".card img");
 
         deletes.forEach(d => {
-            d.addEventListener("click", async function () {
+            d.addEventListener("click", function () {
                 const id = d.dataset.id;
-                await deleteProduct(id);
-                getProducts();
+                modalButton.addEventListener("click", async function () {
+                    await deleteProduct(id);
+                    getProducts();
+                })
             });
         })
 
@@ -58,7 +61,7 @@ async function getProducts() {
         })
 
         images.forEach(i => {
-            i.addEventListener("click",async function(){
+            i.addEventListener("click", async function () {
                 const id = i.dataset.id;
                 location.assign(`./details.html?imgId=${id}`)
             })
