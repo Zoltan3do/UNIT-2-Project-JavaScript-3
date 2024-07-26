@@ -28,14 +28,14 @@ async function getProduct() {
             </div>
             <div class="col-12 p-5 pt-0">
                 <div class="row align-items-center container d-flex justify-content-between">
-                    <div class="col-6 ">
-                        <p id="description" class="text-success fw-bolder fs-3">${data.description}</p>
+                    <div class="col-12 col-md-4 justify-content-center d-flex">
+                        <p id="description" class="text-success fw-bolder fs-3">Descrizione: <br><span class="fs-5 fw-medium">${data.description}</span></p>
                     </div>
-                    <div class="col-2">
-                        <p class=" text-warning fs-3 fw-bold" id="brand">${data.brand}</p>
+                    <div class="col-12 col-md-4 justify-content-center d-flex">
+                        <p class=" text-warning fs-3 fw-bold" id="brand">Artista:<br> <span class="fs-5 fw-medium">${data.brand}</span></p>
                     </div>
-                    <div class="col-2">
-                        <p class="text-danger fs-3 fw-bolder" id="price">${data.price}€</p>
+                    <div class="col-12 col-md-4 justify-content-center d-flex">
+                        <p class="text-danger fs-3 fw-bolder" id="price">Prezzo:<br> <span class="fs-5 fw-medium">${data.price}€</span></p>
                     </div>
                 </div>
             </div>`;
