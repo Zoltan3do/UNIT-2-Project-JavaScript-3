@@ -7,6 +7,8 @@ window.onload = function () {
 }
 
 async function getProducts() {
+    const loadingElement = document.querySelector(".loading");
+    loadingElement.style.display = 'block';
     try {
         const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/`, {
             headers: { 'Authorization': "Bearer " + apiKey }
@@ -69,6 +71,8 @@ async function getProducts() {
 
     } catch (err) {
         console.log(err)
+    } finally {
+        loadingElement.style.display = 'none';
     }
 }
 
